@@ -4,6 +4,10 @@ This is the example of Material 3 Carousel using React.
 
 ![Screenshot.png](Screenshot.png)
 
+## Demo
+
+View demo at [https://carousel.andrax.dev/](https://carousel.andrax.dev/)
+
 ## How it was created
 
 Width of all elements is calculated dynamically based on the scroll width using the following formula:
