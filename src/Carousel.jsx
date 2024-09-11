@@ -8,8 +8,12 @@ const f = (x) => {
     return (4*Math.exp(-8*x))/Math.pow(1+Math.exp(-8*x), 2)
 }
 
+const f2 = (x) => {
+    return (16*Math.exp(4*x))/Math.pow(1+Math.exp(16*x), 2)
+}
+
 const widthFunction = (w) => {
-    return f((w/400)-2)*400;
+    return Math.floor(f2((w/400)-2.4)*400);
 }
 
 function uuidv4() {
@@ -22,15 +26,14 @@ function uuidv4() {
 let startX = 0;
 
 function Carousel(props) {
-    const [scroll, setScroll] = useState(850);
-
     const urls = props.urls;
+    const minScroll = 900;
+    const maxScroll = urls.length * 110 + 775;
+
+    const [scroll, setScroll] = useState(minScroll);
+
     const [wData, setWData] = useState(urls.map(() => 0));
     const [mouseDown, setMouseDown] = useState(false);
-
-    const minScroll = 850;
-    const maxScroll = urls.length * 100 + 655;
-
     const updateScroll = (s) => {
         if (s < minScroll) {
             setScroll(minScroll);
@@ -62,15 +65,14 @@ function Carousel(props) {
     }
 
     const onTouchListener = (e) => {
-
         const touch = e.touches[0];
         const x = touch.clientX;
         const deltaX = x - startX;
 
         if (deltaX > 0) {
-            updateScroll(scroll-4);
+            updateScroll(scroll-2);
         } else {
-            updateScroll(scroll+4);
+            updateScroll(scroll+2);
         }
     }
 
@@ -79,7 +81,7 @@ function Carousel(props) {
             let scrollArray = [];
 
             for (let i = 0; i < wData.length; i++) {
-                scrollArray.push(widthFunction(scroll - (i * 100)));
+                scrollArray.push(widthFunction(scroll - (i * 110)));
             }
 
             setWData(scrollArray);
@@ -90,7 +92,7 @@ function Carousel(props) {
         <div className={"carousel-container"}>
             <MobileView>
                 <div style={{
-                    width: "720px",
+                    width: "800px",
                     height: "500px",
                     position: "absolute",
                     zIndex: 100,
