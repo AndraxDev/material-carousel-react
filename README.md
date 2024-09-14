@@ -1,6 +1,6 @@
 # Material Carousel
 
-This is the example of Material 3 Carousel using React.
+This is the example of Material 3 Carousel using ReactJS.
 
 ![Screenshot.png](Screenshot.png)
 
@@ -8,13 +8,31 @@ This is the example of Material 3 Carousel using React.
 
 View demo at [https://carousel.andrax.dev/](https://carousel.andrax.dev/)
 
+## Requirements
+
+```bash
+npm install react-device-detect@2.2.3
+```
+
+> [!NOTE]
+> 
+> However, you can use this component without `react-device-detect` package, but scrolling on mobile devices will not work without it.
+
+## Usage
+
+```js
+<Carousel urls={urls} supportSnap={false}/>
+```
+
+Where `urls` is an array of image URLs and `supportSnap` is a boolean value that enables snapping to the closest item.
+
 ## How it was created
 
 Width of all elements is calculated dynamically based on the scroll width using the following formula:
 
-<div style="text-align:center"><img src="DynamicWidth.png" /></div>
+<div style="text-align:center"><img src="RenderFormulaNew.png" /></div>
 
-Where x is scroll width + item offset.
+Where x is scroll width + item offset. Each new item has offset of 110px. Scroll width is a virtual parameter as carousel elements only changes their width to simulate scrolling effect.
 
 ## License
 
